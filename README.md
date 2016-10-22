@@ -1,2 +1,2 @@
-# firebase-demo
-Dart + Firebase = ♥️ demo
+# Dart + Firebase = <3 demo
+
