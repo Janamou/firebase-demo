@@ -12,10 +12,7 @@ class Note {
   Note(this.text, [this.imageUrl, this.key]);
 
   static Map toMap(Note item) {
-    Map jsonMap = {
-      jsonTagText: item.text,
-      jsonTagImgUrl: item.imageUrl
-    };
+    Map jsonMap = {jsonTagText: item.text, jsonTagImgUrl: item.imageUrl};
     return jsonMap;
   }
 }

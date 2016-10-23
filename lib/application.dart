@@ -104,8 +104,7 @@ class Application {
       fb.DataSnapshot data = e.snapshot;
 
       var val = data.val();
-      var item = new Note(
-          val[jsonTagText], val[jsonTagImgUrl], data.key);
+      var item = new Note(val[jsonTagText], val[jsonTagImgUrl], data.key);
       _showItem(item);
     });
 
