@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-
-<!--
-  Copyright (c) 2016, Jana Moudrá. All rights reserved. Use of this source code
-  is governed by a BSD-style license that can be found in the LICENSE file.
--->
-
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-    <title>firebase_demo</title>
+    <title>Dart + Firebase demo</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="main.dart" type="application/dart"></script>
-    <script defer src="packages/browser/dart.js"></script>
 </head>
 
 <body>
 
-  <div id="output"></div>
+<div id="profile"></div>
+<a href="#" id="login">Login</a>
 
+<form id="notes_form" style="display: none">
+    <input type="text" placeholder="What do you plan to do today?" id="new_note" disabled>
+    <input type="file" id="upload_image" accept="image/*" disabled>
+    <input type="submit" value="Add" id="submit" disabled>
+</form>
+<div id="container">
+    <div id="notes"></div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+<script defer src="main.dart" type="application/dart"></script>
+<script defer src="packages/browser/dart.js"></script>
 </body>
 </html>

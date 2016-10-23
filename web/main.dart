@@ -1,8 +1,12 @@
-// Copyright (c) 2016, Jana Moudrá. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
-import 'dart:html';
+import 'package:firebase3/firebase.dart';
+import 'package:firebase_demo/application.dart';
 
 void main() {
-  querySelector('#output').text = 'Your Dart app is running.';
+  initializeApp(
+      apiKey: "TODO",
+      authDomain: "TODO",
+      databaseURL: "TODO",
+      storageBucket: "TODO");
+
+  new Application().setupItems();
 }
