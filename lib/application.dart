@@ -15,7 +15,9 @@ class Application {
   final InputElement upload;
   final FormElement form;
   final AnchorElement login;
-  final DivElement profile;
+  final LIElement profile;
+  final DivElement template;
+  final DivElement spinner;
 
   Application()
       : auth = fb.auth(),
@@ -26,8 +28,10 @@ class Application {
         upload = querySelector("#upload_image"),
         submit = querySelector("#submit"),
         form = querySelector("#notes_form"),
-        login = querySelector("#login"),
-        profile = querySelector("#profile") {
+        login = querySelector("#login a"),
+        profile = querySelector("#profile"),
+        template = querySelector("#card-template"),
+        spinner = querySelector(".mdl-spinner") {
     newNote.disabled = false;
     submit.disabled = false;
     upload.disabled = false;
@@ -37,6 +41,8 @@ class Application {
     if (auth.currentUser != null) {
       form.style.display = "block";
     }
+
+    spinner.classes.add("is-active");
   }
 
   void _setElementListeners() {
@@ -108,6 +114,10 @@ class Application {
       _showItem(item);
     });
 
+    databaseRef.onValue.listen((e) {
+      spinner.classes.remove("is-active");
+    });
+
     databaseRef.onChildRemoved.listen((e) {
       fb.DataSnapshot data = e.snapshot;
       var val = data.val();
@@ -148,13 +158,14 @@ class Application {
   }
 
   _showItem(Note item) {
-    var element = new DivElement()
-      ..classes.add("note-item")
-      ..text = item.text;
+    var card = template.clone(true);
+    card.style.display = "block";
+    card.id = "note-${item.key}";
 
-    var removeElement = new AnchorElement(href: "#")
-      ..classes.add("note-remove")
-      ..text = "Remove"
+    var cardContentElement = card.querySelector(".mdl-card__supporting-text");
+    cardContentElement.querySelector("p").text = item.text;
+
+    var removeElement = card.querySelector(".note-remove")
       ..onClick.listen((e) {
         e.preventDefault();
         removeItem(item.key);
@@ -164,14 +175,14 @@ class Application {
       removeElement.style.display = "none";
     }
 
-    element.append(removeElement);
+    cardContentElement.append(removeElement);
 
     if (item.imageUrl != null) {
       var imgElement = new ImageElement(src: item.imageUrl, width: 200);
-      element.append(imgElement);
+      cardContentElement.append(imgElement);
     }
 
-    container.insertBefore(element, container.firstChild);
+    container.insertBefore(card, container.firstChild);
   }
 
   _showProfile(fb.User user) {

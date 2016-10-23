@@ -4,23 +4,60 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dart + Firebase demo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dart + Firebase = <3 demo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-
-<div id="profile"></div>
-<a href="#" id="login">Login</a>
-
-<form id="notes_form" style="display: none">
-    <input type="text" placeholder="What do you plan to do today?" id="new_note" disabled>
-    <input type="file" id="upload_image" accept="image/*" disabled>
-    <input type="submit" value="Add" id="submit" disabled>
-</form>
-<div id="container">
-    <div id="notes"></div>
+<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<div class="mdl-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Notes dashboard</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation">
+                <ul>
+                    <li id="profile"></li>
+                    <li id="login">
+                        <a href="#" class="mdl-button mdl-button--raised mdl-button--accent">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner"></div>
+        <div id="container">
+            <form id="notes_form" style="display: none">
+                <h2>Your awesome note</h2>
+                <input type="text" placeholder="Note text" id="new_note" disabled>
+                <input type="file" id="upload_image" accept="image/*" disabled>
+                <input type="submit" value="Add" id="submit" disabled>
+            </form>
+            <div id="notes" class="mdl-grid"></div>
+        </div>
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Jana Moudrá</div>
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="https://twitter.com/Janamou">@Janamou</a></li>
+                    <li><a href="https://plus.google.com/+JanaMoudr%C3%A1">+Jana Moudra</a></li>
+                    <li><a href="https://github.com/Janamou/">Github</a></li>
+                    <li><a href="http://www.moudra.net/">moudra.net</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
 </div>
+
+    <div id="card-template" class="mdl-card mdl-cell mdl-cell--6-col section--center mdl-shadow--2dp" style="display: none">
+        <div class="mdl-card__supporting-text">
+            <p></p>
+        </div>
+        <a href="#" title="Remove" class="note-remove"><i class="material-icons">delete</i></a>
+    </div>
+
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
 <script defer src="main.dart" type="application/dart"></script>
 <script defer src="packages/browser/dart.js"></script>
