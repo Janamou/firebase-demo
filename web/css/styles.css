@@ -8,6 +8,36 @@ body *:not(.material-icons) {
     color: red;
 }
 
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgb(0,150,136);
+}
+
+input[type="text"],
+textarea {
+    width: 80%;
+    background: #fafafa;
+    border: 2px solid #bdbdbd;
+    font-size: 16px;
+    padding: 10px;
+}
+
+input[type="text"] {
+    line-height: 16px;
+    height: 16px;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    font-size: 13px;
+}
+
+textarea {
+    height: 100px;
+}
+
 .mdl-layout__header-row {
     padding-left: 40px;
 }
@@ -56,29 +86,6 @@ body *:not(.material-icons) {
     font-size: 20px;
     line-height: 2;
     color: black;
-}
-
-#notes-form input[type="text"],
-#notes-form textarea {
-    width: 80%;
-    background: #fafafa;
-    border: 2px solid #bdbdbd;
-    font-size: 16px;
-    padding: 10px;
-}
-
-#notes-form input[type="text"] {
-    line-height: 16px;
-    height: 16px;
-    margin-bottom: 10px;
-}
-
-#notes-form textarea {
-    height: 100px;
-}
-
-#upload-image {
-    font-size: 13px;
 }
 
 #actual-image-remove {

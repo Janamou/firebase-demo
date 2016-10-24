@@ -40,12 +40,11 @@ class Application {
     upload.disabled = false;
 
     _setElementListeners();
-
-    spinner.classes.add("is-active");
   }
 
   void setupItems() {
     databaseRef.onChildAdded.listen((e) {
+      spinner.classes.add("is-active");
       fb.DataSnapshot data = e.snapshot;
 
       var val = data.val();
