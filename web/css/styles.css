@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body *:not(.material-icons) {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.error {
+    color: red;
+}
+
 .mdl-layout__header-row {
     padding-left: 40px;
 }
@@ -10,9 +20,6 @@
     display: inline-block;
     list-style: none;
 }
-#profile {
-    margin-top: 22px;
-}
 
 #profile * {
     display: inline-block;
@@ -23,31 +30,76 @@
     margin-bottom: 0;
 }
 
+#profile a {
+    color: white;
+}
+
 #profile img {
     border-radius: 100%;
 }
 
-.mdl-layout__content {
-    text-align: center;
-}
-
-#content {
-    min-height: 200px;
+#container {
+    min-height: 300px;
     margin: 0 10px;
 }
 
-#content section, .mdl-mini-footer {
+#container section, .mdl-mini-footer {
     text-align: left;
 }
 
+#notes-form h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+#notes-form label {
+    font-size: 20px;
+    line-height: 2;
+    color: black;
+}
+
+#notes-form input[type="text"],
+#notes-form textarea {
+    width: 80%;
+    background: #fafafa;
+    border: 2px solid #bdbdbd;
+    font-size: 16px;
+    padding: 10px;
+}
+
+#notes-form input[type="text"] {
+    line-height: 16px;
+    height: 16px;
+    margin-bottom: 10px;
+}
+
+#notes-form textarea {
+    height: 100px;
+}
+
+#upload-image {
+    font-size: 13px;
+}
+
+#actual-image-remove {
+    margin-left: 20px;
+}
+
+#submit {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 .mdl-spinner {
-    margin-top: 5px;
+    margin: 10px auto 0;
+    display: block;
+    font-size: 20px;
 }
 
 .mdl-grid {
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     position: relative;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .mdl-card {
@@ -55,47 +107,35 @@
     display: inline-block;
 }
 
-.mdl-card__actions {
-    margin: 0;
-    padding: 4px 20px;
-}
-
-.mdl-card__actions .mdl-button {
-    color: rgb(83, 109, 254);
-
-}
-
-.mdl-card__supporting-text h4 {
-    margin: 0 0 20px;
-    font-size: 20px;
-    text-overflow: ellipsis;
-    max-width: 180px;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 .mdl-card__supporting-text {
-    margin: 20px;
+    margin: 20px 15px;
     padding: 0;
     color: inherit;
-    width: calc(100% - 80px);
 }
 
-.mdl-card__supporting-text + .mdl-card__actions {
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+.mdl-card__supporting-text h3 {
+    font-size: 24px;
+    margin: 0 30px 10px 0;
+    line-height: 1;
+    color: black;
 }
 
-.mdl-card__metadata {
+.mdl-card__supporting-text p {
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.mdl-card__supporting-text img {
+    max-width: 100%;
+}
+
+.mdl-card__actions {
     margin: 0;
     position: absolute;
-    top: 25px;
+    top: 10px;
     right: 20px;
     z-index: 10;
-}
-
-.mdl-card__metadata li {
-    display: inline-block;
-    padding: 0 5px;
+    width: 24px;
 }
 
 .mdl-card__metadata i {
@@ -103,24 +143,30 @@
     margin-right: 5px;
 }
 
-.mdl-card__metadata span {
+.mdl-card__actions a {
     color: #9e9e9e;
 }
 
-.not-available {
-    font-style: italic;
-}
-
-.mdl-card__metadata-watchers {
-    display: none !important;
+.mdl-card__actions a:hover {
+    color: rgb(68,138,255);
 }
 
 .mdl-logo {
     margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.mdl-mega-footer__bottom-section {
+    padding-top: 0;
+    clear: both;
+}
+
+.mdl-mega-footer__bottom-section p {
+    font-size: 16px;
 }
 
 @media all and (min-width: 768px) {
-    #content {
+    #container {
         min-height: 600px;
     }
 }

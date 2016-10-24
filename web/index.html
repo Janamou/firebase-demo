@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dart + Firebase = <3 demo</title>
+    <title>Dart + Firebase = ♥ demo</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -19,43 +19,59 @@
             <nav class="mdl-navigation">
                 <ul>
                     <li id="profile"></li>
-                    <li id="login">
-                        <a href="#" class="mdl-button mdl-button--raised mdl-button--accent">Login</a>
+                    <li id="login" style="display: none">
+                        <a href="#" class="mdl-button mdl-button--raised mdl-button--accent">Sign in with Google</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
     <main class="mdl-layout__content">
-        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner"></div>
         <div id="container">
-            <form id="notes_form" style="display: none">
-                <h2>Your awesome note</h2>
-                <input type="text" placeholder="Note text" id="new_note" disabled>
-                <input type="file" id="upload_image" accept="image/*" disabled>
-                <input type="submit" value="Add" id="submit" disabled>
+            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner"></div>
+            <form id="notes-form" style="display: none">
+                <div class="mdl-grid">
+                    <h2 class="mdl-cell mdl-cell--12-col">Add new awesome note</h2>
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <label for="new-note">Your awesome note<sup>*</sup></label><br>
+                        <input type="text" id="new-note-title" placeholder="Note title" disabled>
+                        <textarea placeholder="Note text" id="new-note" cols="10" rows="5" disabled></textarea>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col" id="note-image">
+                        <label for="upload-image">Attach image</label><br>
+                        <input type="file" id="upload-image" accept="image/*" disabled>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <input type="submit" value="Add" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" disabled>
+                    </div>
+                </div>
             </form>
             <div id="notes" class="mdl-grid"></div>
         </div>
         <footer class="mdl-mini-footer">
             <div class="mdl-mini-footer__left-section">
-                <div class="mdl-logo">Jana Moudrá</div>
+                <div class="mdl-logo">Dart + Firebase = ♥</div>
+                <div class="mdl-mega-footer__bottom-section">
+                    <p>This demo is written in Dart and uses Firebase. They are great partners together.</p>
+                </div>
                 <ul class="mdl-mini-footer__link-list">
-                    <li><a href="https://twitter.com/Janamou">@Janamou</a></li>
-                    <li><a href="https://plus.google.com/+JanaMoudr%C3%A1">+Jana Moudra</a></li>
-                    <li><a href="https://github.com/Janamou/">Github</a></li>
-                    <li><a href="http://www.moudra.net/">moudra.net</a></li>
+                    <li><a href="https://www.dartlang.org/">Dart</a></li>
+                    <li><a href="https://firebase.google.com/">Firebase</a></li>
+                    <li><a href="https://pub.dartlang.org/packages/firebase3">Firebase3 Dart</a></li>
+                    <li>Created by <a href="https://twitter.com/Janamou">Jana Moudrá</a></li>
                 </ul>
             </div>
         </footer>
     </main>
 </div>
 
-    <div id="card-template" class="mdl-card mdl-cell mdl-cell--6-col section--center mdl-shadow--2dp" style="display: none">
-        <div class="mdl-card__supporting-text">
+    <div id="card-template" class="mdl-card mdl-cell mdl-cell--4-col section--center mdl-shadow--2dp" style="display: none">
+        <div class="mdl-card__supporting-text note-text">
             <p></p>
         </div>
-        <a href="#" title="Remove" class="note-remove"><i class="material-icons">delete</i></a>
+        <div class="mdl-card__actions note-actions">
+            <a href="#" title="Remove note" class="note-remove"><i class="material-icons">delete</i></a>
+        </div>
     </div>
 
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
