@@ -14,7 +14,8 @@
 <div class="mdl-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">Notes board</span>
+            <span class="mdl-layout-title visible-desktop">Notes board</span>
+            <span class="mdl-layout-title visible-mobile">NB</span>
             <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation">
                 <ul>
@@ -32,12 +33,12 @@
             <form id="notes-form" style="display: none">
                 <div class="mdl-grid">
                     <h2 class="mdl-cell mdl-cell--12-col">Add new awesome note</h2>
-                    <div class="mdl-cell mdl-cell--6-col">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
                         <label for="new-note">Your awesome note<sup>*</sup></label><br>
                         <input type="text" id="new-note-title" placeholder="Note title" disabled>
                         <textarea placeholder="Note text" id="new-note" cols="10" rows="5" disabled></textarea>
                     </div>
-                    <div class="mdl-cell mdl-cell--6-col" id="note-image">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet" id="note-image">
                         <label for="upload-image">Attach image</label><br>
                         <input type="file" id="upload-image" accept="image/*" disabled>
                     </div>
@@ -52,7 +53,7 @@
             <div class="mdl-mini-footer__left-section">
                 <div class="mdl-logo">Dart + Firebase = ♥</div>
                 <div class="mdl-mega-footer__bottom-section">
-                    <p>This demo is written in Dart and uses Firebase. They are great partners together.</p>
+                    <p>This demo is written in Dart and uses Firebase.<br>They are great partners together.</p>
                 </div>
                 <ul class="mdl-mini-footer__link-list">
                     <li><a href="https://www.dartlang.org/" target="_blank">Dart</a></li>

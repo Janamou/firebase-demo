@@ -39,12 +39,13 @@ class Application {
     submit.disabled = false;
     upload.disabled = false;
 
+    spinner.classes.add("is-active");
+
     _setElementListeners();
   }
 
   void setupItems() {
     databaseRef.onChildAdded.listen((e) {
-      spinner.classes.add("is-active");
       fb.DataSnapshot data = e.snapshot;
 
       var val = data.val();
@@ -99,6 +100,7 @@ class Application {
   void _setElementListeners() {
     upload.onChange.listen((e) async {
       e.preventDefault();
+      spinner.classes.add("is-active");
       submit.disabled = true;
       var file = (e.target as FileUploadInputElement).files[0];
 
@@ -107,9 +109,10 @@ class Application {
         _showUploadImage(snapshot.downloadURL);
       } catch (e) {
         print("Error in uploading to database: $e");
+      } finally {
+        spinner.classes.remove("is-active");
+        submit.disabled = false;
       }
-
-      submit.disabled = false;
     });
 
     form.onSubmit.listen((e) {
@@ -165,7 +168,7 @@ class Application {
   }
 
   _showItem(Note item) {
-    var card = template.clone(true);
+    HtmlElement card = template.clone(true);
     card.style.display = "block";
     card.id = "note-${item.key}";
 
@@ -223,11 +226,11 @@ class Application {
     }
   }
 
-  _showUploadImage(String url) {
+  _showUploadImage(Uri url) {
     upload.style.display = "none";
     var containerElement = new DivElement()..id = "actual-image-container";
 
-    var imgElement = new ImageElement(src: url, width: 200)
+    var imgElement = new ImageElement(src: url.toString(), width: 200)
       ..id = "actual-image";
 
     var removeElement = new AnchorElement(href: "#")

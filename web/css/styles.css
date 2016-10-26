@@ -17,7 +17,7 @@ textarea:focus {
 
 input[type="text"],
 textarea {
-    width: 80%;
+    width: calc(100% - 20px);
     background: #fafafa;
     border: 2px solid #bdbdbd;
     font-size: 16px;
@@ -38,8 +38,20 @@ textarea {
     height: 100px;
 }
 
+.visible-mobile {
+    display: block !important;
+}
+
+.visible-desktop {
+    display: none !important;
+}
+
+.mdl-layout-title {
+    display: none;
+}
+
 .mdl-layout__header-row {
-    padding-left: 40px;
+    padding-left: 16px;
 }
 
 .mdl-layout__header-row .mdl-navigation ul {
@@ -58,10 +70,15 @@ textarea {
 
 #profile p {
     margin-bottom: 0;
+    display: none;
 }
 
 #profile a {
     color: white;
+}
+
+#profile a:hover {
+    text-decoration: none;
 }
 
 #profile img {
@@ -79,6 +96,7 @@ textarea {
 
 #notes-form h2 {
     font-size: 30px;
+    line-height: 1.2;
     text-align: center;
 }
 
@@ -98,9 +116,10 @@ textarea {
 }
 
 .mdl-spinner {
-    margin: 10px auto 0;
+    margin: 20px auto 0;
     display: block;
-    font-size: 20px;
+    font-size: 16px;
+    color: #bdbdbd;
 }
 
 .mdl-grid {
@@ -173,6 +192,26 @@ textarea {
 }
 
 @media all and (min-width: 768px) {
+    input[type="text"],
+    textarea {
+        width: 80%;
+    }
+    .visible-mobile {
+        display: none !important;
+    }
+
+    .visible-desktop {
+        display: block !important;
+    }
+
+    .mdl-layout__header-row {
+        padding-left: 40px;
+    }
+
+    #profile p {
+        display: inline-block;
+    }
+
     #container {
         min-height: 600px;
     }
