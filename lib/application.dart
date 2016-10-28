@@ -42,26 +42,34 @@ class Application {
     spinner.classes.add("is-active");
 
     _setElementListeners();
+    _setAuthListener();
   }
 
   void setupItems() {
+    // Setups listening on the child_added event on the database ref.
     databaseRef.onChildAdded.listen((e) {
+      // Snapshot of the data.
       fb.DataSnapshot data = e.snapshot;
 
+      // Value of data from snapshot.
       var val = data.val();
+      // Creates a new Note item. It is possible to retrieve a key from data.
       var item = new Note(
           val[jsonTagText], val[jsonTagTitle], val[jsonTagImgUrl], data.key);
       _showItem(item);
     });
 
+    // Setups listening on the value event on the database ref.
     databaseRef.onValue.listen((e) {
       spinner.classes.remove("is-active");
     });
 
+    // Setups listening on the child_removed event on the database ref.
     databaseRef.onChildRemoved.listen((e) {
       fb.DataSnapshot data = e.snapshot;
       var val = data.val();
 
+      // Removes also the image from storage.
       var imageUrl = val[jsonTagImgUrl];
       if (imageUrl != null) {
         removeItemImage(imageUrl);
@@ -71,6 +79,7 @@ class Application {
     });
   }
 
+  // Pushes a new item as a Map to database.
   postItem(Note item) async {
     try {
       await databaseRef.push(Note.toMap(item)).future;
@@ -80,6 +89,7 @@ class Application {
     }
   }
 
+  // Removes item with a key from database.
   removeItem(String key) async {
     try {
       await databaseRef.child(key).remove();
@@ -88,6 +98,17 @@ class Application {
     }
   }
 
+  // Puts image into a storage.
+  postItemImage(File file) async {
+    try {
+      var snapshot = await storageRef.child(file.name).put(file).future;
+      _showUploadImage(snapshot.downloadURL);
+    } catch (e) {
+      print("Error in uploading to database: $e");
+    }
+  }
+
+  // Removes image with an imageUrl from the storage.
   removeItemImage(String imageUrl) async {
     try {
       var imageRef = fb.storage().refFromURL(imageUrl);
@@ -97,24 +118,27 @@ class Application {
     }
   }
 
+  // Logins with the Google auth provider.
+  loginWithGoogle() async {
+    var provider = new fb.GoogleAuthProvider();
+    try {
+      await auth.signInWithPopup(provider);
+    } catch (e) {
+      print("Error in sign in with google: $e");
+    }
+  }
+
   void _setElementListeners() {
+    // Upload image button listener.
     upload.onChange.listen((e) async {
       e.preventDefault();
       spinner.classes.add("is-active");
       submit.disabled = true;
       var file = (e.target as FileUploadInputElement).files[0];
-
-      try {
-        var snapshot = await storageRef.child(file.name).put(file).future;
-        _showUploadImage(snapshot.downloadURL);
-      } catch (e) {
-        print("Error in uploading to database: $e");
-      } finally {
-        spinner.classes.remove("is-active");
-        submit.disabled = false;
-      }
+      postItemImage(file);
     });
 
+    // Form submit listener.
     form.onSubmit.listen((e) {
       e.preventDefault();
       var text = newNote.value.trim();
@@ -138,16 +162,16 @@ class Application {
     });
 
     var loginAnchor = login.querySelector("a");
+    // Login button listener.
     loginAnchor.onClick.listen((e) async {
       e.preventDefault();
-      var provider = new fb.GoogleAuthProvider();
-      try {
-        await auth.signInWithPopup(provider);
-      } catch (e) {
-        print("Error in sign in with google: $e");
-      }
+      loginWithGoogle();
     });
+  }
 
+  // Sets the auth event listener.
+  _setAuthListener() {
+    // When the state of auth changes (user logs in/logs out).
     auth.onAuthStateChanged.listen((e) {
       var user = e.user;
       _clearProfile();
@@ -253,6 +277,9 @@ class Application {
 
     var imgColumn = querySelector("#note-image");
     imgColumn.append(containerElement);
+
+    spinner.classes.remove("is-active");
+    submit.disabled = false;
   }
 
   _removeUploadImage() {
