@@ -1,6 +1,6 @@
 # Dart + Firebase = ♥ demo
 
-Demo app for the Dart Dev Summit 2016. The application is written in Dart and uses the [Firebase3 library](https://github.com/firebase/firebase-dart/).
+Demo app for the Dart Dev Summit 2016. The application is written in Dart and uses the [Firebase library](https://github.com/firebase/firebase-dart/).
 
 ![Dart + Firebase App](https://github.com/Janamou/firebase-demo/blob/master/dartsummit-demo.png)
 
