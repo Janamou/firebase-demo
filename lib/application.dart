@@ -15,7 +15,7 @@ class Application {
   final InputElement submit;
   final InputElement upload;
   final FormElement form;
-  final AnchorElement login;
+  final LIElement login;
   final LIElement profile;
   final DivElement template;
   final DivElement spinner;
