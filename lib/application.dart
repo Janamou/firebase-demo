@@ -1,7 +1,7 @@
 library firebase_demo.app;
 
 import 'dart:html';
-import 'package:firebase3/firebase.dart' as fb;
+import 'package:firebase/firebase.dart' as fb;
 import 'package:firebase_demo/note.dart';
 
 class Application {
