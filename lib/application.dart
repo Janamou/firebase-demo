@@ -173,7 +173,7 @@ class Application {
   _setAuthListener() {
     // When the state of auth changes (user logs in/logs out).
     auth.onAuthStateChanged.listen((e) {
-      var user = e.user;
+      var user = e;
       _clearProfile();
 
       if (user != null) {
