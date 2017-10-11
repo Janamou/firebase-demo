@@ -26,6 +26,30 @@ Enable Google login in Firebase console under the `Authentication/Sign-in method
 
 Set database rules on who can access the database under the `Database/Rules`. More info on [Database rules](https://firebase.google.com/docs/database/security/).
 
+For example:
+
+```json
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null"
+  }
+}
+```
+
 ### Storage rules
 
 Set storage rules on who can access the storage under the `Storage/Rules`. More info on [Storage rules](https://firebase.google.com/docs/storage/security/).
+
+For example:
+
+```
+service firebase.storage {
+  match /b/<YOUR_STORAGE_BUCKET>/o {
+    match /{allPaths=**} {
+      allow read;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
